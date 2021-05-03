@@ -24,7 +24,7 @@
                         class="no-underline hover:underline text-black"
                         :href="`/student/room/${room.id}`"
                     >
-                    {{room.students.id}}
+                    <!-- {{room.students.id}} -->
                         {{ room.name }}
                     </inertia-link>
                     <p>{{ room.description }}</p>
@@ -42,6 +42,7 @@
 <script>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated";
 import BreezeButton from "@/Components/Button";
+import { computed } from 'vue';
 
 export default {
   components: {
@@ -50,9 +51,12 @@ export default {
   },
 
   props: {
-    my_rooms: Object,
     auth: Object,
     errors: Object,
   },
+  setup(props){
+      const my_rooms = computed(()=> props.auth.user.student_classes)
+      return {my_rooms}
+  }
 };
 </script>

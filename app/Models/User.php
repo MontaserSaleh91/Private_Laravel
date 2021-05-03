@@ -50,8 +50,8 @@ class User extends Authenticatable
         return $this->hasMany(Room::class);
     }
 
-    public function students(){
-        return $this->belongsToMany(User::class,'room_user','user_id','room_id');
+    public function student_classes(){
+        return $this->belongsToMany(Room::class,'room_user','user_id','room_id');
     }
 
     public function mark(){

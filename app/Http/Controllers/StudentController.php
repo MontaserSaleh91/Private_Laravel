@@ -76,21 +76,9 @@ class StudentController extends Controller
 
     public function my_class()
     {
-        $student = Auth::user()->id;
+        Auth::user()->load('student_classes');
 
-
-        $rooms = Room::with('students')->get();
-        $my_rooms = $rooms->where('students.0.id', $student);
-        // $my_rooms = Room::wherehas([
-        //     'room_user' => function ($query) use ($student){
-        //         $query->where('user_id', $student);
-        //     }
-        // ]);
-        //  $my_rooms->students()->id;
-        // dd($my_rooms);
-            return Inertia::render('Student/MyClasses',[
-                'my_rooms' => $my_rooms,
-            ]);
+            return Inertia::render('Student/MyClasses');
     }
 
 
