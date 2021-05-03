@@ -2,7 +2,7 @@
     <breeze-authenticated-layout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                My Classes
+                all Classes
             </h2>
         </template>
         <breeze-button class="ml-20">

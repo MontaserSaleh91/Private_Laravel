@@ -5,11 +5,11 @@
         All Classes
       </h2>
     </template>
-    <!-- <breeze-button class="ml-20">
-            <inertia-link :href="`/room/create/`"
-                >Create New Class</inertia-link
+    <breeze-button class="ml-20">
+            <inertia-link :href="`student/myclasses/`"
+                >My Class</inertia-link
             >
-        </breeze-button> -->
+        </breeze-button>
 
     <div class="py-12">
       <div class="container my-12 mx-auto px-4 md:px-12">
@@ -26,7 +26,7 @@
                 <h1 class="text-lg">
                     <inertia-link
                         class="no-underline hover:underline text-black"
-                        :href="`student/room/${room.id}`"
+                        :href="`/student/room/${room.id}`"
                     >
                         {{ room.name }}
                     </inertia-link>

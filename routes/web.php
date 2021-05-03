@@ -38,10 +38,10 @@ Route::group(['middleware' => ['auth']], function (){
 
 //for students
 Route::group(['middleware' => ['auth','role:student']], function (){
-    Route::get('student/room/{room_id}', 'App\Http\Controllers\StudentController@student_room')->name('student.room');
+    Route::get('/student/room/{room_id}', 'App\Http\Controllers\StudentController@student_room')->name('student.room');
     Route::get('student/lesson/{lesson_id}', 'App\Http\Controllers\StudentController@show_lesson')->name('room.lesson');
     Route::get('student/lesson/download/{lesson_id}', 'App\Http\Controllers\StudentController@download')->name('lesson.download');
-    Route::get('/myclasses', 'App\Http\Controllers\StudentController@my_class')->name('student.class');
+    Route::get('/student/myclasses', 'App\Http\Controllers\StudentController@my_class')->name('student.class');
 
 
 });

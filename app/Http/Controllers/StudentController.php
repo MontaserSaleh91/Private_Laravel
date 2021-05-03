@@ -74,19 +74,24 @@ class StudentController extends Controller
         return response()->download(storage_path("app/{$file_name}"));
     }
 
-    // public function my_class()
-    // {
-    //     $student = Auth::user()->id;
-    //     $my_rooms = Room::with([
-    //         'students' => function ($query) use ($student){
-    //             $query->where('user_id', $student);
-    //         }
-    //     ])->get();
-    //     dd($my_rooms);
-    //         return Inertia::render('Student/MyClasses',[
-    //             'my_rooms' => $my_rooms,
-    //         ]);
-    // }
+    public function my_class()
+    {
+        $student = Auth::user()->id;
+
+
+        $rooms = Room::with('students')->get();
+        $my_rooms = $rooms->where('students.0.id', $student);
+        // $my_rooms = Room::wherehas([
+        //     'room_user' => function ($query) use ($student){
+        //         $query->where('user_id', $student);
+        //     }
+        // ]);
+        //  $my_rooms->students()->id;
+        // dd($my_rooms);
+            return Inertia::render('Student/MyClasses',[
+                'my_rooms' => $my_rooms,
+            ]);
+    }
 
 
 }

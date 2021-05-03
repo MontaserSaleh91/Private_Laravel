@@ -2,7 +2,7 @@
   <breeze-authenticated-layout>
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        All Classes
+        My Classes
       </h2>
     </template>
 
@@ -22,7 +22,7 @@
                 <h1 class="text-lg">
                     <inertia-link
                         class="no-underline hover:underline text-black"
-                        :href="`student/room/${room.id}`"
+                        :href="`/student/room/${room.id}`"
                     >
                     {{room.students.id}}
                         {{ room.name }}

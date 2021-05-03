@@ -22,7 +22,7 @@
                 <h1 class="text-lg">
                     <inertia-link
                         class="no-underline hover:underline text-black"
-                        :href="`student/room/${room.id}`"
+                        :href="`/room/${room.id}`"
                     >
                         {{ room.name }}
                     </inertia-link>
