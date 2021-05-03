@@ -18549,23 +18549,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.vue");
-/* harmony import */ var _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/Authenticated */ "./resources/js/Layouts/Authenticated.vue");
-/* harmony import */ var _Components_Input__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/Input */ "./resources/js/Components/Input.vue");
-/* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/Label */ "./resources/js/Components/Label.vue");
-/* harmony import */ var _Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.vue");
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+/* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.vue");
+/* harmony import */ var _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Layouts/Authenticated */ "./resources/js/Layouts/Authenticated.vue");
+/* harmony import */ var _Components_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/Input */ "./resources/js/Components/Input.vue");
+/* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/Label */ "./resources/js/Components/Label.vue");
+/* harmony import */ var _Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.vue");
+
 
 
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  layout: _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__.default,
+  layout: _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_2__.default,
   components: {
-    BreezeButton: _Components_Button__WEBPACK_IMPORTED_MODULE_0__.default,
-    BreezeInput: _Components_Input__WEBPACK_IMPORTED_MODULE_2__.default,
-    BreezeLabel: _Components_Label__WEBPACK_IMPORTED_MODULE_3__.default,
-    BreezeValidationErrors: _Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_4__.default
+    BreezeButton: _Components_Button__WEBPACK_IMPORTED_MODULE_1__.default,
+    BreezeInput: _Components_Input__WEBPACK_IMPORTED_MODULE_3__.default,
+    BreezeLabel: _Components_Label__WEBPACK_IMPORTED_MODULE_4__.default,
+    BreezeValidationErrors: _Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_5__.default
   },
   props: {
     room: Object,
@@ -18573,19 +18575,22 @@ __webpack_require__.r(__webpack_exports__);
     auth: Object,
     errors: Object
   },
-  data: function data() {
-    return {
-      form: this.$inertia.form({
-        first: '',
-        mid: '',
-        "final": ''
-      })
+  setup: function setup(props) {
+    var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.useForm)({
+      _method: "PUT",
+      first: props.student.mark.first,
+      mid: props.student.mark.mid,
+      "final": props.student.mark["final"]
+    });
+
+    var submit = function submit() {
+      form.post('/edit/mark/' + props.room.id + '/' + props.student.id);
     };
-  },
-  methods: {
-    submit: function submit() {
-      this.form.post('/edit/mark/' + this.room.id);
-    }
+
+    return {
+      form: form,
+      submit: submit
+    };
   }
 });
 
@@ -21152,7 +21157,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "mb-4"
   }), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
     onSubmit: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
-      return $options.submit && $options.submit.apply($options, arguments);
+      return $setup.submit && $setup.submit.apply($setup, arguments);
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_label, {
     "for": "first",
@@ -21161,52 +21166,49 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "first",
     type: "text",
     "class": "mt-1 block w-full",
-    modelValue: $data.form.first,
+    modelValue: $setup.form.first,
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-      return $data.form.first = $event;
+      return $setup.form.first = $event;
     }),
-    value: $props.student.mark.first,
     autofocus: "",
     autocomplete: "first"
   }, null, 8
   /* PROPS */
-  , ["modelValue", "value"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_label, {
+  , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_label, {
     "for": "mid",
     value: "mid"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_input, {
     id: "mid",
     type: "text",
     "class": "mt-1 block w-full",
-    modelValue: $data.form.mid,
+    modelValue: $setup.form.mid,
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return $data.form.mid = $event;
+      return $setup.form.mid = $event;
     }),
-    value: $props.student.mark.mid,
     autofocus: "",
     autocomplete: "mid"
   }, null, 8
   /* PROPS */
-  , ["modelValue", "value"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_label, {
+  , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_label, {
     "for": "final",
     value: "final"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_input, {
     id: "final",
     type: "text",
     "class": "mt-1 block w-full",
-    modelValue: $data.form["final"],
+    modelValue: $setup.form["final"],
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-      return $data.form["final"] = $event;
+      return $setup.form["final"] = $event;
     }),
-    value: $props.student.mark["final"],
     autofocus: "",
     autocomplete: "final"
   }, null, 8
   /* PROPS */
-  , ["modelValue", "value"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_button, {
+  , ["modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_button, {
     "class": ["m-5", {
-      'opacity-25': $data.form.processing
+      'opacity-25': $setup.form.processing
     }],
-    disabled: $data.form.processing
+    disabled: $setup.form.processing
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_3];

@@ -75,4 +75,32 @@ class MarkController extends Controller
             'student' => $student,
         ]);
     }
+
+    public function mark_update(Request $request, $room_id, $std_id)
+    {
+
+        $request->validate([
+            'first' => 'nullable|numeric|min:0|max:30',
+            'mid' => 'nullable|numeric|min:0|max:30',
+            'final' => 'nullable|numeric|min:0|max:40',
+        ]);
+
+        if ($request->first) {
+            $data['first']   = $request->first;
+        }
+        if ($request->mid) {
+            $data['mid']       = $request->mid;
+        }
+        if ($request->final) {
+            $data['final']        = $request->final;
+        }
+
+
+        $data['student_id']        = $std_id;
+        $data['room_id'] = $room_id;
+        $mark = Mark::whereStudentId($std_id)->whereRoomId($room_id)->first();
+        $mark->update($data);
+
+        return Redirect::route('students.show', $room_id);
+    }
 }

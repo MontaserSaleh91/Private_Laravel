@@ -7,17 +7,17 @@
     <form @submit.prevent="submit">
         <div>
             <breeze-label for="first" value="first" />
-            <breeze-input id="first" type="text" class="mt-1 block w-full" v-model="form.first" :value="student.mark.first" autofocus autocomplete="first" />
+            <breeze-input id="first" type="text" class="mt-1 block w-full" v-model="form.first" autofocus autocomplete="first" />
         </div>
 
         <div>
             <breeze-label for="mid" value="mid" />
-            <breeze-input id="mid" type="text" class="mt-1 block w-full" v-model="form.mid" :value="student.mark.mid" autofocus autocomplete="mid" />
+            <breeze-input id="mid" type="text" class="mt-1 block w-full" v-model="form.mid" autofocus autocomplete="mid" />
         </div>
 
         <div>
             <breeze-label for="final" value="final" />
-            <breeze-input id="final" type="text" class="mt-1 block w-full" v-model="form.final" :value="student.mark.final" autofocus autocomplete="final" />
+            <breeze-input id="final" type="text" class="mt-1 block w-full" v-model="form.final" autofocus autocomplete="final" />
         </div>
 
 
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+    import { useForm } from "@inertiajs/inertia-vue3";
     import BreezeButton from '@/Components/Button'
     import BreezeAuthenticatedLayout from '@/Layouts/Authenticated'
     import BreezeInput from '@/Components/Input'
@@ -55,21 +56,20 @@
             errors: Object,
         },
 
-        data() {
-            return {
-                form: this.$inertia.form({
-                    first: '',
-                    mid: '',
-                    final: '',
-                })
-            }
-        },
+  setup(props) {
 
+    const form = useForm({
+        _method: "PUT",
+        first: props.student.mark.first,
+        mid: props.student.mark.mid,
+        final: props.student.mark.final,
+    });
 
-        methods: {
-            submit() {
-                this.form.post('/edit/mark/' + this.room.id)
-            }
-        }
-    }
+    const submit = () => {
+        form.post('/edit/mark/' + props.room.id +'/'+ props.student.id);
+    };
+
+    return { form, submit };
+    },
+}
 </script>
