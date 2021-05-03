@@ -61,6 +61,7 @@ Route::group(['middleware' => ['auth','role:teacher']], function (){
     Route::put('/edit/mark/{room_id}/{std_id}', 'App\Http\Controllers\MarkController@mark_update')->name('mark.update');
     Route::get('/room/students/{room_id}', 'App\Http\Controllers\TeacherController@show_students')->name('students.show');
     Route::post('/student/room/{room_id}', 'App\Http\Controllers\TeacherController@add_student')->name('student.enroll');
+    Route::get('/teacher/classes', 'App\Http\Controllers\TeacherController@teacher_classes')->name('teacher.classes');
 
 
 

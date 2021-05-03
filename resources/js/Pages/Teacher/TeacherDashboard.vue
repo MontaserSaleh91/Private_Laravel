@@ -10,6 +10,11 @@
                 >Create New Class</inertia-link
             >
         </breeze-button>
+        <breeze-button class="ml-20">
+            <inertia-link :href="`/teacher/classes/`"
+                >My Classes</inertia-link
+            >
+        </breeze-button>
 
         <div class="py-12">
             <div class="container my-12 mx-auto px-4 md:px-12">

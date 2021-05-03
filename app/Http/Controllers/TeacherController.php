@@ -98,4 +98,14 @@ class TeacherController extends Controller
 
         return Redirect::route('students.show', $room_id);
     }
+
+    public function teacher_classes()
+    {
+        $teacher = Auth::user()->id;
+        $rooms = Room::whereTeacherId($teacher)->get();
+        return Inertia::render('Teacher/TeacherClasses',[
+            'rooms' => $rooms,
+
+        ]);
+    }
 }
