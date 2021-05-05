@@ -51,7 +51,9 @@ class MarkController extends Controller
         $data['student_id']        = $request->student_id;
         $data['room_id'] = $room_id;
         $mark = Mark::whereStudentId($request->student_id)->whereRoomId($room_id)->first();
-        $mark->update($data);
+        if ($mark->first == null && $mark->mid == null && $mark->final == null) {
+            $mark->update($data);
+        }
 
         return Redirect::route('students.show', $room_id);
     }
